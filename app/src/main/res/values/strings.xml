@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Order</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="lbl_restaurant_name">XYZ Restaurant...</string>
+
+    <string name="order_fragment_label">Order Screen</string>
+    <string name="ingredient_fragment_label">Ingredient Screen</string>
+
+    <string name="lbl_incoming">Incoming</string>
+    <string name="lbl_preparing">Preparing</string>
+    <string name="lbl_collection">Collection</string>
+
+    <string name="lbl_auto_reject">Auto reject</string>
+    <string name="lbl_okay">Okay</string>
+    <string name="lbl_accept">Accept</string>
+</resources>

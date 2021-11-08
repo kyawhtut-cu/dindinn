@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="iconColor" format="reference" />
+    <attr name="textColor" format="reference" />
+
+    <declare-styleable name="ViewTimeDot">
+        <attr name="dotCount" format="integer" />
+        <attr name="activeIndex" format="integer" />
+    </declare-styleable>
+
+</resources>
