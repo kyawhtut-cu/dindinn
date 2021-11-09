@@ -14,7 +14,7 @@ import androidx.databinding.ViewDataBinding
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), View.OnClickListener {
 
     abstract val layoutID: Int
-    open val onClickName: Int = -1
+    open val onClickListener: Int = -1
 
     protected lateinit var vb: VB
 
@@ -23,7 +23,7 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), View.On
         super.onCreate(savedInstanceState)
         vb = DataBindingUtil.setContentView(this, layoutID)
         vb.apply {
-            if (onClickName != -1) setVariable(onClickName, this@BaseActivity)
+            if (onClickListener != -1) setVariable(onClickListener, this@BaseActivity)
             lifecycleOwner = this@BaseActivity
             executePendingBindings()
         }

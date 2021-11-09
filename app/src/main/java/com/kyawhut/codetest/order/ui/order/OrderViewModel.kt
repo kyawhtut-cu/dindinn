@@ -21,14 +21,7 @@ class OrderViewModel @Inject constructor(
     private val repo: OrderRepository
 ) : BaseViewModel() {
 
-    private var isFirstTime: Boolean = true
-
     fun getOrder(callback: (NetworkResponse<List<OrderModel>>) -> Unit) {
-        if (!isFirstTime) return
-
-        if (isFirstTime) {
-            isFirstTime = false
-        }
         callback(loading())
         repo.getOrder().bothThread().subscribe(
             {
