@@ -36,7 +36,7 @@ class ViewTimeDot @JvmOverloads constructor(
         )
         try {
             val dotCount = a.getInteger(R.styleable.ViewTimeDot_dotCount, 0)
-            val activeIndex = a.getInteger(R.styleable.ViewTimeDot_activeIndex, dotCount) - 1
+            val activeIndex = a.getInteger(R.styleable.ViewTimeDot_activeIndex, -1)
             repeat((0 until dotCount).count()) { index ->
                 dotList.add(1.takeIf { index == activeIndex } ?: 0)
             }
@@ -50,8 +50,12 @@ class ViewTimeDot @JvmOverloads constructor(
         dotList.forEach {
             dotList[it] = 0
         }
-        dotList[index] = 1
+        if (index != -1) dotList[index] = 1
         dotAdapter.addAll(dotList)
+    }
+
+    fun removeActiveIndex() {
+        showActiveIndex(-1)
     }
 
     override fun onFinishInflate() {

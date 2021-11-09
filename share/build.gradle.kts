@@ -75,6 +75,11 @@ dependencies {
     implementation(Libs.retrofitGson)
     implementation(Libs.retrofitRxJava)
 
+    // reactive
+    implementation(Libs.rxJava)
+    implementation(Libs.rxAndroid)
+    implementation(Libs.rxKotlin)
+
     implementation(Libs.glide)
     implementation(Libs.glideOkHttp)
     kapt(Libs.glideCompiler)

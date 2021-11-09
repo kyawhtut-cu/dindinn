@@ -1,13 +1,42 @@
 package com.kyawhut.codetest.order.ui.order
 
+import com.kyawhut.codetest.order.data.model.OrderModel
 import com.kyawhut.codetest.share.base.BaseViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
+import com.kyawhut.codetest.share.network.utils.NetworkResponse
+import com.kyawhut.codetest.share.network.utils.NetworkResponse.Companion.error
+import com.kyawhut.codetest.share.network.utils.NetworkResponse.Companion.loading
+import com.kyawhut.codetest.share.network.utils.NetworkResponse.Companion.success
+import com.kyawhut.codetest.share.network.utils.error
+import com.kyawhut.codetest.share.utils.Extension.bothThread
+import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 /**
  * @author kyawhtut
  * @date 11/8/21
  */
-@ViewModelScoped
-class OrderViewModel @Inject constructor() : BaseViewModel() {
+@HiltViewModel
+class OrderViewModel @Inject constructor(
+    private val repo: OrderRepository
+) : BaseViewModel() {
+
+    private var isFirstTime: Boolean = true
+
+    fun getOrder(callback: (NetworkResponse<List<OrderModel>>) -> Unit) {
+        if (!isFirstTime) return
+
+        if (isFirstTime) {
+            isFirstTime = false
+        }
+        callback(loading())
+        repo.getOrder().bothThread().subscribe(
+            {
+                callback(success(it))
+            },
+            {
+                callback(error(it.error))
+            },
+        ).addTo(disposable)
+    }
 }

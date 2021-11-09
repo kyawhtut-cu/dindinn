@@ -49,7 +49,7 @@ private fun String?.toNetworkError(): NetworkError? {
     }
 }
 
-val Exception.error: NetworkError
+val Throwable.error: NetworkError
     get() {
         this.printStackTrace()
         return NetworkError().apply {

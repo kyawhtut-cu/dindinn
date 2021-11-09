@@ -6,13 +6,25 @@
 
     <data>
 
+        <import type="android.view.View.OnClickListener" />
+
         <import type="com.kyawhut.codetest.order.adapter.OrderAdapter" />
 
         <import type="com.kyawhut.codetest.share.utils.binding.RvBinding.LayoutType" />
 
+        <import type="android.view.View" />
+
+        <variable
+            name="onClickListener"
+            type="OnClickListener" />
+
         <variable
             name="orderAdapter"
             type="OrderAdapter" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
 
     </data>
 
@@ -77,6 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?actionBarItemBackground"
+                android:onClick="@{(v)-> onClickListener.onClick(v)}"
                 android:padding="@dimen/margin_medium_2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_restaurant_name"
@@ -111,7 +124,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_order"
             adapter="@{orderAdapter}"
-            layoutManger="@{LayoutType.HORIZONTAL_LAYOUT}"
+            layoutManager="@{LayoutType.HORIZONTAL_LAYOUT}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#f0f0f2"
@@ -122,6 +135,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_header"
             tools:listitem="@layout/content_order_view" />
+
+        <FrameLayout
+            android:id="@+id/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#81000000"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}">
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

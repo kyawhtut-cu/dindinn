@@ -17,7 +17,7 @@ object RvBinding {
     }
 
     @JvmStatic
-    @BindingAdapter("adapter", "layoutManger", "itemCount", requireAll = false)
+    @BindingAdapter("adapter", "layoutManager", "itemCount", requireAll = false)
     fun RecyclerView.bindAdapter(
         adapter: BaseAdapter<*>?,
         layoutType: LayoutType?,

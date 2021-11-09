@@ -2,7 +2,6 @@ package com.kyawhut.codetest.share.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 
 /**
  * @author kyawhtut
@@ -10,7 +9,7 @@ import io.reactivex.disposables.Disposable
  */
 abstract class BaseViewModel : ViewModel() {
 
-    protected val disposable: Disposable = CompositeDisposable()
+    protected val disposable: CompositeDisposable = CompositeDisposable()
 
     override fun onCleared() {
         disposable.dispose()

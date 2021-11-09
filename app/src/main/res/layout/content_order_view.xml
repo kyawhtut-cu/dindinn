@@ -3,6 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="com.kyawhut.codetest.order.adapter.OrderItemAdapter" />
+
+        <import type="com.kyawhut.codetest.share.utils.binding.RvBinding.LayoutType" />
+
+        <variable
+            name="orderItemAdapter"
+            type="OrderItemAdapter" />
+
+        <variable
+            name="orderNumber"
+            type="Integer" />
+
+        <variable
+            name="orderTime"
+            type="String" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
@@ -10,8 +29,8 @@
 
         <com.kyawhut.codetest.order.ui.component.ViewOrderHeader
             android:id="@+id/view_order_header"
-            orderNumber="@{552}"
-            orderTime="@{`12:30pm`}"
+            orderNumber="@{orderNumber}"
+            orderTime="@{orderTime}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,8 +88,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_order_item"
+                adapter="@{orderItemAdapter}"
+                layoutManager="@{LayoutType.VERTICAL_LAYOUT}"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/content_divider"
@@ -101,6 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_medium"
+                android:text="@{String.format(`%s item%s`, orderItemAdapter.itemCount, orderItemAdapter.itemCount > 1 ? `s` : ``)}"
                 android:textColor="?textColor"
                 android:textSize="@dimen/text_regular"
                 app:layout_constraintBottom_toBottomOf="parent"
