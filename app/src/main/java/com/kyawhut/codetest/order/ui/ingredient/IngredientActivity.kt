@@ -1,7 +1,10 @@
 package com.kyawhut.codetest.order.ui.ingredient
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
+import com.kyawhut.codetest.order.BR
 import com.kyawhut.codetest.order.R
 import com.kyawhut.codetest.order.adapter.IngredientAdapter
 import com.kyawhut.codetest.order.data.model.CategoryModel
@@ -22,6 +25,9 @@ class IngredientActivity : BaseActivityWithVM<ActivityIngredientBinding, Ingredi
     override val layoutID: Int
         get() = R.layout.activity_ingredient
 
+    override val onClickListener: Int
+        get() = BR.onClickListener
+
     private val ingredientAdapter: IngredientAdapter by lazy {
         IngredientAdapter()
     }
@@ -40,6 +46,10 @@ class IngredientActivity : BaseActivityWithVM<ActivityIngredientBinding, Ingredi
                 "${it.id}",
                 ::onIngredientNetworkState
             )
+        }
+
+        vb.edtSearch.addTextChangedListener {
+            ingredientAdapter.filter.filter(it.toString())
         }
     }
 
@@ -69,6 +79,12 @@ class IngredientActivity : BaseActivityWithVM<ActivityIngredientBinding, Ingredi
         if (state.isSuccess) {
             ingredientAdapter.clear()
             ingredientAdapter.addAll(state.data ?: listOf())
+        }
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.action_close -> finish()
         }
     }
 }

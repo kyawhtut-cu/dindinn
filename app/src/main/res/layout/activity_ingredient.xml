@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View.OnClickListener" />
+
         <import type="java.util.List" />
 
         <import type="com.kyawhut.codetest.order.ui.component.CustomTab.TabItem" />
@@ -13,6 +15,10 @@
         <import type="com.kyawhut.codetest.share.utils.binding.RvBinding.LayoutType" />
 
         <import type="com.kyawhut.codetest.order.adapter.IngredientAdapter" />
+
+        <variable
+            name="onClickListener"
+            type="OnClickListener" />
 
         <variable
             name="ingredientAdapter"
@@ -27,6 +33,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/action_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?actionBarItemBackground"
+                android:onClick="@{(v)->onClickListener.onClick(v)}"
+                android:padding="@dimen/margin_medium_2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_down" />
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_ingredient"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/margin_medium_2"
+                android:hint="@string/hint_search_ingredient"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/margin_medium_2"
+                android:paddingVertical="@dimen/margin_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/action_close"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.kyawhut.codetest.order.ui.component.CustomTab
             android:id="@+id/tab_view"
             tabList="@{tabList}"
@@ -36,7 +80,7 @@
             android:paddingStart="@dimen/margin_medium"
             android:paddingEnd="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/view_search" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ingredient"

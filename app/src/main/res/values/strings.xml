@@ -14,4 +14,7 @@
     <string name="lbl_auto_reject">Auto reject</string>
     <string name="lbl_okay">Okay</string>
     <string name="lbl_accept">Accept</string>
+
+    <string name="hint_search_ingredient">Search for an item</string>
+    <string name="hint_search_order">#</string>
 </resources>
