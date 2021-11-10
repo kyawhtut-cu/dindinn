@@ -16,7 +16,7 @@ object ImageBinding {
     fun ImageView.loadImage(imageURL: String?) {
         if (imageURL == null) return
         GlideApp.with(this.context)
-            .load(imageURL)
+            .load(imageURL.replace("http", "https"))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(this)
     }

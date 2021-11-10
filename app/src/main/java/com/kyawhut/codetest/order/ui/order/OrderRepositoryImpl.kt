@@ -3,6 +3,7 @@ package com.kyawhut.codetest.order.ui.order
 import com.kyawhut.codetest.order.data.model.OrderModel
 import com.kyawhut.codetest.order.data.model.OrderModel.Companion.toOrderModel
 import com.kyawhut.codetest.order.data.network.API
+import com.kyawhut.codetest.share.utils.Extension.backgroundThread
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -17,6 +18,6 @@ class OrderRepositoryImpl @Inject constructor(private val api: API) : OrderRepos
             it.map {
                 it.toOrderModel()
             }
-        }
+        }.backgroundThread()
     }
 }

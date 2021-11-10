@@ -7,7 +7,7 @@ import com.kyawhut.codetest.share.network.utils.NetworkResponse.Companion.error
 import com.kyawhut.codetest.share.network.utils.NetworkResponse.Companion.loading
 import com.kyawhut.codetest.share.network.utils.NetworkResponse.Companion.success
 import com.kyawhut.codetest.share.network.utils.error
-import com.kyawhut.codetest.share.utils.Extension.bothThread
+import com.kyawhut.codetest.share.utils.Extension.mainThread
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class OrderViewModel @Inject constructor(
 
     fun getOrder(callback: (NetworkResponse<List<OrderModel>>) -> Unit) {
         callback(loading())
-        repo.getOrder().bothThread().subscribe(
+        repo.getOrder().mainThread().subscribe(
             {
                 callback(success(it))
             },
