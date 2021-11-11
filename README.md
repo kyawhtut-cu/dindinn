@@ -29,10 +29,10 @@ Use of support lib
 Implementation
 -
   OrderActivity
-  [OrderRequest](images/order-activity.png)
+  ![OrderRequest](images/order-activity.png)
   
   Ingredient Activity
-  [CategoryRequest](images/ingredient-category.png)
+  ![CategoryRequest](images/ingredient-category.png)
   
-  [IngredientRequestByCategoryID](images/ingredient-activity.png)
+  ![IngredientRequestByCategoryID](images/ingredient-activity.png)
   
