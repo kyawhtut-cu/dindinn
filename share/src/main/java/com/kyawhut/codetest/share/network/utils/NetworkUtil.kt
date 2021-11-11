@@ -48,8 +48,8 @@ object NetworkUtil {
         .readTimeout(WAIT_TIME, TimeUnit.SECONDS)
         .connectTimeout(CONN_TIME, TimeUnit.SECONDS)
         .writeTimeout(WAIT_TIME, TimeUnit.SECONDS).apply {
-            interceptors.forEach { addInterceptor(it) }
-            authenticators.forEach { authenticator(it) }
+            interceptors.iterator().forEach { addInterceptor(it) }
+            authenticators.iterator().forEach { authenticator(it) }
         }.build()
 
     private fun provideGson(): GsonConverterFactory = GsonConverterFactory.create()

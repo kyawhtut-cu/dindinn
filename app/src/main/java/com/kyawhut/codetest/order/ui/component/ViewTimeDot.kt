@@ -47,7 +47,7 @@ class ViewTimeDot @JvmOverloads constructor(
     }
 
     fun showActiveIndex(index: Int) {
-        dotList.forEach {
+        dotList.iterator().forEach {
             dotList[it] = 0
         }
         if (index != -1) dotList[index] = 1

@@ -73,7 +73,7 @@
                         android:background="#ff0000"
                         android:gravity="center"
                         android:paddingVertical="@dimen/margin_small"
-                        android:text="Available"
+                        android:text="@string/lbl_available"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold"

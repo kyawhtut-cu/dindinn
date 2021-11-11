@@ -29,7 +29,7 @@ android {
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
 
-        versionCode = 1//androidGitVersion.code()
+        versionCode = androidGitVersion.code()
         versionName = androidGitVersion.name()
 
         multiDexEnabled = true

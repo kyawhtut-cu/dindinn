@@ -46,7 +46,7 @@ class IngredientRepositoryImplTest {
     private fun `on request ingredient list by category id`(categoryID: Int): TestObserver<List<IngredientModel>> {
         val ingredientObserver = TestObserver<List<IngredientModel>>()
 
-        repository.getIngredientListByCategoryID("1").subscribe(ingredientObserver)
+        repository.getIngredientListByCategoryID("$categoryID").subscribe(ingredientObserver)
 
         return ingredientObserver
     }
@@ -68,6 +68,6 @@ class IngredientRepositoryImplTest {
         ingredientObserver.assertComplete()
         ingredientObserver.assertNoErrors()
         ingredientObserver.assertValueCount(1)
-        Assert.assertEquals(false, ingredientObserver.values().first().isEmpty())
+        Assert.assertEquals(true, ingredientObserver.values().first().isEmpty())
     }
 }
