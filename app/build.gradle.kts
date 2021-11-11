@@ -10,7 +10,7 @@ plugins {
 }
 
 val configProperties = Properties()
-configProperties.load(file("${rootDir}/local.properties").inputStream())
+configProperties.load(file("${rootDir}/config.properties").inputStream())
 val BASE_URL: String = configProperties.getProperty("BASE_URL", "")
 
 val appName = hashMapOf(

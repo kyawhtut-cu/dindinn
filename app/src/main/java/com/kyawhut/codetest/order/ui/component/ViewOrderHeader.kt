@@ -64,7 +64,9 @@ class ViewOrderHeader @JvmOverloads constructor(
         }
 
     fun startTimer() {
+        vb.isVisibleTimer = false
         if (expireAt.time - currentTime.time < 0) return
+
         if (countDownTimer == null) {
             countDownTimer = object : CountDownTimer(expireAt.time - currentTime.time, 1000) {
                 override fun onFinish() {
@@ -91,6 +93,7 @@ class ViewOrderHeader @JvmOverloads constructor(
 
     fun stopTimer() {
         countDownTimer?.cancel()
+        countDownTimer = null
     }
 
     fun setOnExpiredListener(onExpired: () -> Unit) {
