@@ -11,18 +11,34 @@ import com.kyawhut.codetest.share.adapter.BaseViewHolder
  * @date 11/8/21
  */
 class OrderViewHolder(
-    vb: ContentOrderViewBinding
+    vb: ContentOrderViewBinding,
+    private val onAlert: () -> Unit,
+    private val onExpired: () -> Unit,
+    private val onClickedAccept: (Int) -> Unit,
 ) : BaseViewHolder<ContentOrderViewBinding, OrderModel>(vb) {
 
     override fun bind() {
         data?.let {
             vb.apply {
+                viewOrderHeader.alertAt = it.alertAt
+                viewOrderHeader.expireAt = it.expireAt
+                viewOrderHeader.setOnAlertListener(onAlert)
+                viewOrderHeader.setOnExpiredListener {
+                    isExpired = true
+                    onExpired()
+                }
+                viewOrderHeader.startTimer()
+
                 orderNumber = it.id.toInt()
                 orderTime = it.orderAt
                 orderItemAdapter = OrderItemAdapter().apply {
                     addAll(it.addOn.toMutableList().apply {
                         add(0, AddOnModel(it.id.toInt(), it.title, it.quantity))
                     })
+                }
+
+                vb.actionAcceptOrOk.setOnClickListener {
+                    onClickedAccept(adapterPosition)
                 }
             }
         }

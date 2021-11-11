@@ -93,6 +93,8 @@ dependencies {
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.testJunit)
     androidTestImplementation(Libs.espresso)
+    testImplementation(Libs.mockito)
+    testImplementation(Libs.coreTesting)
 
     implementation(Libs.kotlinLib)
     implementation(Libs.coreKtx)
@@ -103,6 +105,7 @@ dependencies {
     implementation(Libs.navigationUI)
     implementation(Libs.vectorDrawable)
     implementation(Libs.swipeRefresh)
+    implementation(Libs.liveDataKtx)
 
     // retrofit
     implementation(Libs.retrofit)

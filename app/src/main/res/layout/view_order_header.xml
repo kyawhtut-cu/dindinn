@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="orderNumber"
             type="String" />
@@ -12,6 +14,15 @@
         <variable
             name="orderTime"
             type="String" />
+
+        <variable
+            name="timer"
+            type="String" />
+
+        <variable
+            name="isVisibleTimer"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +57,7 @@
             android:id="@+id/view_timer"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:visibility="@{isVisibleTimer ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_order_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_order_no">
@@ -55,18 +67,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_small"
+                android:text="Auto reject"
                 android:textColor="?textColor"
                 android:textSize="@dimen/text_regular"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_timer_count"
                 app:layout_constraintEnd_toStartOf="@+id/tv_timer_count"
-                app:layout_constraintTop_toTopOf="@+id/tv_timer_count"
-                tools:text="Auto reject" />
+                app:layout_constraintTop_toTopOf="@+id/tv_timer_count" />
 
             <TextView
                 android:id="@+id/tv_timer_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_medium"
+                android:text="@{timer}"
                 android:textColor="?textColor"
                 android:textSize="@dimen/text_regular_2x"
                 android:textStyle="bold"

@@ -1,11 +1,13 @@
 package com.kyawhut.codetest.order.ui.component
 
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.databinding.BindingAdapter
 import com.kyawhut.codetest.order.databinding.ViewOrderHeaderBinding
+import java.util.*
 
 /**
  * @author kyawhtut
@@ -37,6 +39,18 @@ class ViewOrderHeader @JvmOverloads constructor(
         true
     )
 
+    private var _onExpired: (() -> Unit)? = null
+    private var _onAlert: (() -> Unit)? = null
+    private var _isAlerted: Boolean = false
+
+    private val currentTime: Date
+        get() = Date()
+
+    private var countDownTimer: CountDownTimer? = null
+
+    var expireAt: Date = Date()
+    var alertAt: Date = Date()
+
     var orderNumber: String = ""
         set(value) {
             field = value
@@ -48,4 +62,42 @@ class ViewOrderHeader @JvmOverloads constructor(
             field = value
             vb.orderTime = value
         }
+
+    fun startTimer() {
+        if (expireAt.time - currentTime.time < 0) return
+        if (countDownTimer == null) {
+            countDownTimer = object : CountDownTimer(expireAt.time - currentTime.time, 1000) {
+                override fun onFinish() {
+                }
+
+                override fun onTick(millisUntilFinished: Long) {
+                    if (currentTime.time >= alertAt.time && !_isAlerted) {
+                        _isAlerted = true
+                        _onAlert?.invoke()
+                    }
+
+                    vb.timer = "${millisUntilFinished / 1000}s"
+
+                    if (millisUntilFinished / 1000 == 0L) {
+                        vb.isVisibleTimer = false
+                        _onExpired?.invoke()
+                    }
+                }
+            }
+        }
+        vb.isVisibleTimer = true
+        countDownTimer?.start()
+    }
+
+    fun stopTimer() {
+        countDownTimer?.cancel()
+    }
+
+    fun setOnExpiredListener(onExpired: () -> Unit) {
+        this._onExpired = onExpired
+    }
+
+    fun setOnAlertListener(onAlert: () -> Unit) {
+        this._onAlert = onAlert
+    }
 }

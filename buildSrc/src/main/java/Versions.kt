@@ -17,6 +17,9 @@ object Versions {
     const val junitVersion = "4.13.2"
     const val testJunitVersion = "1.1.2"
     const val espressoVersion = "3.3.0"
+    const val mockitoVersion = "2.21.0"
+    const val coreTestingVersion = "1.1.1"
+    const val googleTruthVersion = "0.42"
 
     const val coreKtxVersion = "1.6.0"
     const val appCompactVersion = "1.3.1"
@@ -40,6 +43,7 @@ object Versions {
 
     const val roomVersion = "2.2.6"
     const val roomKtxVersion = "2.4.0-alpha01"
+    const val liveDataKtxVersion = "2.4.0-alpha01"
 
     const val lifeCycleExtVersion = "2.2.0"
     const val fragmentKtxVersion = "1.3.2"

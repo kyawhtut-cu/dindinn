@@ -6,6 +6,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_small"
         android:background="@drawable/bg_time_dot"
-        android:paddingHorizontal="@dimen/margin_medium_2"
-        android:paddingVertical="@dimen/margin_small" />
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="2dp" />
 </layout>

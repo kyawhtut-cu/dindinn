@@ -74,6 +74,12 @@ abstract class BaseAdapter<D>(
         return itemList.indexOfFirst(predicate)
     }
 
+    fun remove(index: Int) {
+        itemList.removeAt(index)
+        originalList.removeAt(index)
+        notifyItemRemoved(index)
+    }
+
     fun clear() {
         val totalCount = itemList.size
         itemList.clear()

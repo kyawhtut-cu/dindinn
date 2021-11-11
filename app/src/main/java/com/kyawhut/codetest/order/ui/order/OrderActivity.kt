@@ -26,7 +26,13 @@ class OrderActivity : BaseActivityWithVM<ActivityOrderBinding, OrderViewModel>()
         get() = R.layout.activity_order
 
     private val orderAdapter: OrderAdapter by lazy {
-        OrderAdapter()
+        OrderAdapter(
+            onAlert = {},
+            onExpired = {},
+            onClickedAccept = {
+                orderAdapter.remove(it)
+            },
+        )
     }
 
     override val onClickListener: Int

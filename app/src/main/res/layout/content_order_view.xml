@@ -20,6 +20,11 @@
         <variable
             name="orderTime"
             type="String" />
+
+        <variable
+            name="isExpired"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,10 +72,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/margin_medium"
-                android:background="@drawable/bg_okay"
+                android:background="@{isExpired ? @drawable/bg_accept : @drawable/bg_okay}"
                 android:gravity="center"
                 android:minWidth="120dp"
-                android:text="@string/lbl_okay"
+                android:text="@{isExpired ? @string/lbl_accept :@string/lbl_okay}"
                 android:textColor="?textColor"
                 android:textSize="@dimen/text_heading_1x"
                 app:layout_constraintEnd_toEndOf="parent"

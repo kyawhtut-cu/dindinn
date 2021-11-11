@@ -12,7 +12,11 @@ import com.kyawhut.codetest.share.adapter.BaseViewHolder
  * @author kyawhtut
  * @date 11/8/21
  */
-class OrderAdapter : BaseAdapter<OrderModel>() {
+class OrderAdapter(
+    private val onAlert: () -> Unit,
+    private val onExpired: () -> Unit,
+    private val onClickedAccept: (Int) -> Unit,
+) : BaseAdapter<OrderModel>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,7 +27,8 @@ class OrderAdapter : BaseAdapter<OrderModel>() {
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onAlert, onExpired, onClickedAccept
         )
     }
 }

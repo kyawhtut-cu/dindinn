@@ -27,7 +27,6 @@ class IngredientRepositoryImpl @Inject constructor(
     }
 
     override fun getIngredientListByCategoryID(categoryID: String): Single<List<IngredientModel>> {
-        Timber.d("categoryID => $categoryID")
         return api.getIngredientList().map {
             it.filter {
                 "${it.categoryID}" == categoryID

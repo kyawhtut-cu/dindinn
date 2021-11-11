@@ -11,6 +11,9 @@ object Libs {
     const val junit = "junit:junit:${Versions.junitVersion}"
     const val testJunit = "androidx.test.ext:junit:${Versions.testJunitVersion}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
+    const val mockito = "org.mockito:mockito-inline:${Versions.mockitoVersion}"
+    const val coreTesting = "android.arch.core:core-testing:${Versions.coreTestingVersion}"
+    const val googleTruth = "com.google.truth:truth:${Versions.googleTruthVersion}"
 
     const val kotlinLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
@@ -49,6 +52,8 @@ object Libs {
     const val roomRxJava = "androidx.room:room-rxjava2:${Versions.roomVersion}"
     const val roomKtx =
         "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.roomKtxVersion}"
+    const val liveDataKtx =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveDataKtxVersion}"
 
     const val lifeCycleExt =
         "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExtVersion}"
