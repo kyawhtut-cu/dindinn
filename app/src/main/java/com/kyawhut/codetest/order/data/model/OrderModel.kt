@@ -36,5 +36,8 @@ data class OrderModel(
     }
 
     val orderAt: String
-        get() = SimpleDateFormat(TIME_FORMAT, Locale.ENGLISH).format(createdAt)
+        get() = SimpleDateFormat(
+            TIME_FORMAT,
+            Locale.ENGLISH
+        ).format(Date()) // this is a mock to test created
 }

@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <import type="com.kyawhut.codetest.order.adapter.OrderItemAdapter" />
 
         <import type="com.kyawhut.codetest.share.utils.binding.RvBinding.LayoutType" />
@@ -62,6 +64,7 @@
                 android:textColor="?textColor"
                 android:textSize="@dimen/text_heading_1x"
                 android:textStyle="bold"
+                android:visibility="@{isExpired ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="@+id/action_accept_or_ok"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/action_accept_or_ok" />
@@ -72,11 +75,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/margin_medium"
-                android:background="@{isExpired ? @drawable/bg_accept : @drawable/bg_okay}"
+                android:background="@{isExpired ? @drawable/bg_okay : @drawable/bg_accept}"
                 android:gravity="center"
                 android:minWidth="120dp"
-                android:text="@{isExpired ? @string/lbl_accept :@string/lbl_okay}"
-                android:textColor="?textColor"
+                android:text="@{isExpired ? @string/lbl_okay :@string/lbl_accept}"
+                android:textColor="@{isExpired ? @color/black : @color/white }"
                 android:textSize="@dimen/text_heading_1x"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

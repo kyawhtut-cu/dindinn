@@ -65,7 +65,10 @@ class ViewOrderHeader @JvmOverloads constructor(
 
     fun startTimer() {
         vb.isVisibleTimer = false
-        if (expireAt.time - currentTime.time < 0) return
+        if (expireAt.time - currentTime.time < 0) {
+            _onExpired?.invoke()
+            return
+        }
 
         if (countDownTimer == null) {
             countDownTimer = object : CountDownTimer(expireAt.time - currentTime.time, 1000) {
@@ -102,5 +105,10 @@ class ViewOrderHeader @JvmOverloads constructor(
 
     fun setOnAlertListener(onAlert: () -> Unit) {
         this._onAlert = onAlert
+    }
+
+    override fun onDetachedFromWindow() {
+        stopTimer()
+        super.onDetachedFromWindow()
     }
 }

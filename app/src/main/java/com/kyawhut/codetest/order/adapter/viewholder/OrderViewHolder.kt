@@ -5,6 +5,7 @@ import com.kyawhut.codetest.order.data.model.AddOnModel
 import com.kyawhut.codetest.order.data.model.OrderModel
 import com.kyawhut.codetest.order.databinding.ContentOrderViewBinding
 import com.kyawhut.codetest.share.adapter.BaseViewHolder
+import java.util.*
 
 /**
  * @author kyawhtut
@@ -17,11 +18,17 @@ class OrderViewHolder(
     private val onClickedAccept: (Int) -> Unit,
 ) : BaseViewHolder<ContentOrderViewBinding, OrderModel>(vb) {
 
+    private val currentDate: Date = Date()
+
     override fun bind() {
         data?.let {
             vb.apply {
-                viewOrderHeader.alertAt = it.alertAt
-                viewOrderHeader.expireAt = it.expireAt
+                viewOrderHeader.alertAt = Date(
+                    currentDate.time + (5 * 60 * 1000)
+                ) // this is a mock to test alert
+                viewOrderHeader.expireAt = Date(
+                    currentDate.time + (6 * 60 * 1000)
+                ) // this is a mock to test expire
                 viewOrderHeader.setOnAlertListener(onAlert)
                 viewOrderHeader.setOnExpiredListener {
                     isExpired = true
@@ -38,6 +45,7 @@ class OrderViewHolder(
                 }
 
                 vb.actionAcceptOrOk.setOnClickListener {
+                    viewOrderHeader.stopTimer()
                     onClickedAccept(adapterPosition)
                 }
             }

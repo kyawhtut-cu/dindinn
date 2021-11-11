@@ -2,6 +2,7 @@ package com.kyawhut.codetest.order.ui.ingredient
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import com.kyawhut.codetest.order.BR
@@ -54,6 +55,7 @@ class IngredientActivity : BaseActivityWithVM<ActivityIngredientBinding, Ingredi
     }
 
     private fun onCategoryNetworkState(state: NetworkResponse<List<CategoryModel>>) {
+        vb.isLoading = state.isLoading
         if (state.isSuccess) {
             vb.apply {
                 tabList = state.data?.mapIndexed { index, it ->
@@ -72,13 +74,30 @@ class IngredientActivity : BaseActivityWithVM<ActivityIngredientBinding, Ingredi
                     ::onIngredientNetworkState
                 )
             }
+        } else if (state.isError) {
+            state.error?.let { error ->
+                Toast.makeText(
+                    this,
+                    error.message.takeIf { error.resId == 0 } ?: getString(error.resId),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
     private fun onIngredientNetworkState(state: NetworkResponse<List<IngredientModel>>) {
+        vb.isLoading = state.isLoading
         if (state.isSuccess) {
             ingredientAdapter.clear()
             ingredientAdapter.addAll(state.data ?: listOf())
+        } else if (state.isError) {
+            state.error?.let { error ->
+                Toast.makeText(
+                    this,
+                    error.message.takeIf { error.resId == 0 } ?: getString(error.resId),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
