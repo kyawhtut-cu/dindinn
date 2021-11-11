@@ -14,9 +14,14 @@ configProperties.load(file("${rootDir}/config.properties").inputStream())
 val BASE_URL: String = configProperties.getProperty("BASE_URL", "")
 
 val appName = hashMapOf(
-        "debug" to "app-debug.apk",
-        "release" to "app-release.apk"
+    "debug" to "app-debug.apk",
+    "release" to "app-release.apk"
 )
+
+var versionCode = androidGitVersion.code()
+if (versionCode == 0) {
+    versionCode = 1
+}
 
 android {
 
@@ -30,7 +35,7 @@ android {
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
 
-        versionCode = androidGitVersion.code()
+        versionCode = versionCode
         versionName = androidGitVersion.name()
 
         multiDexEnabled = true
@@ -54,8 +59,8 @@ android {
             isShrinkResources = true
 
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
 
@@ -78,13 +83,13 @@ android {
     android.applicationVariants.all {
         val variant = this
         variant.outputs.map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
-                .forEach { output ->
-                    val buildOutputPath = "../../release/${variant.versionName}/%s"
-                    output.outputFileName = String.format(
-                            buildOutputPath,
-                            appName[variant.buildType.name]
-                    )
-                }
+            .forEach { output ->
+                val buildOutputPath = "../../release/${variant.versionName}/%s"
+                output.outputFileName = String.format(
+                    buildOutputPath,
+                    appName[variant.buildType.name]
+                )
+            }
     }
 }
 
