@@ -10,7 +10,7 @@ plugins {
 }
 
 val configProperties = Properties()
-configProperties.load(file("${rootDir}/local.properties").inputStream())
+configProperties.load(file("${rootDir}/config.properties").inputStream())
 val BASE_URL: String = configProperties.getProperty("BASE_URL", "")
 
 val appName = hashMapOf(
@@ -18,18 +18,23 @@ val appName = hashMapOf(
     "release" to "app-release.apk"
 )
 
+var versionCode = androidGitVersion.code()
+if (versionCode == 0) {
+    versionCode = 1
+}
+
 android {
 
     compileSdkVersion(Versions.compileSdkVersion)
     buildToolsVersion(Versions.buildToolsVersion)
 
     defaultConfig {
-        applicationId =  "com.kyawhut.codetest.merchant"
+        applicationId = "com.kyawhut.codetest.merchant"
 
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
 
-        versionCode = androidGitVersion.code()
+        versionCode = versionCode
         versionName = androidGitVersion.name()
 
         multiDexEnabled = true
