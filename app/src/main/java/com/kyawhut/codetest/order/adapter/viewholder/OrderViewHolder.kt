@@ -24,10 +24,10 @@ class OrderViewHolder(
         data?.let {
             vb.apply {
                 viewOrderHeader.alertAt = Date(
-                    currentDate.time + (5 * 60 * 1000)
+                    currentDate.time + (1 * 60 * 1000)
                 ) // this is a mock to test alert
                 viewOrderHeader.expireAt = Date(
-                    currentDate.time + (6 * 60 * 1000)
+                    currentDate.time + (2 * 60 * 1000)
                 ) // this is a mock to test expire
                 viewOrderHeader.setOnAlertListener(onAlert)
                 viewOrderHeader.setOnExpiredListener {

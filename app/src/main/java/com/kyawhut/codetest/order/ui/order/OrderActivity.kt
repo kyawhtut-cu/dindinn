@@ -1,9 +1,7 @@
 package com.kyawhut.codetest.order.ui.order
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -27,17 +25,11 @@ class OrderActivity : BaseActivityWithVM<ActivityOrderBinding, OrderViewModel>()
     override val layoutID: Int
         get() = R.layout.activity_order
 
-    private val alertMediaPlayer: MediaPlayer by lazy {
-        MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI)
-    }
-
     private val orderAdapter: OrderAdapter by lazy {
         OrderAdapter(
             onAlert = {
-                alertMediaPlayer.start()
             },
             onExpired = {
-                alertMediaPlayer.stop()
             },
             onClickedAccept = {
                 orderAdapter.remove(it)
@@ -85,13 +77,6 @@ class OrderActivity : BaseActivityWithVM<ActivityOrderBinding, OrderViewModel>()
             R.id.action_order_to_ingredient -> {
                 startActivity(Intent(this, IngredientActivity::class.java))
             }
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (alertMediaPlayer.isPlaying) {
-            alertMediaPlayer.stop()
         }
     }
 }

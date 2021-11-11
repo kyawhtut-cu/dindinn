@@ -18,9 +18,9 @@ val appName = hashMapOf(
     "release" to "app-release.apk"
 )
 
-var versionCode = androidGitVersion.code()
-if (versionCode == 0) {
-    versionCode = 1
+var vCode = androidGitVersion.code()
+if (vCode == 0) {
+    vCode = 1
 }
 
 android {
@@ -34,7 +34,7 @@ android {
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
 
-        versionCode = versionCode
+        versionCode = vCode
         versionName = androidGitVersion.name()
 
         multiDexEnabled = true

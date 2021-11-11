@@ -1,7 +1,9 @@
 package com.kyawhut.codetest.order.ui.component
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.CountDownTimer
+import android.provider.Settings
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -31,6 +33,10 @@ class ViewOrderHeader @JvmOverloads constructor(
         fun ViewOrderHeader.setOrderTime(orderTime: String?) {
             this.orderTime = orderTime ?: ""
         }
+    }
+
+    private val alertMediaPlayer: MediaPlayer by lazy {
+        MediaPlayer.create(context, Settings.System.DEFAULT_RINGTONE_URI)
     }
 
     private val vb: ViewOrderHeaderBinding = ViewOrderHeaderBinding.inflate(
@@ -78,12 +84,14 @@ class ViewOrderHeader @JvmOverloads constructor(
                 override fun onTick(millisUntilFinished: Long) {
                     if (currentTime.time >= alertAt.time && !_isAlerted) {
                         _isAlerted = true
+                        alertMediaPlayer.start()
                         _onAlert?.invoke()
                     }
 
                     vb.timer = "${millisUntilFinished / 1000}s"
 
                     if (millisUntilFinished / 1000 == 0L) {
+                        alertMediaPlayer.stop()
                         vb.isVisibleTimer = false
                         _onExpired?.invoke()
                     }
@@ -95,6 +103,7 @@ class ViewOrderHeader @JvmOverloads constructor(
     }
 
     fun stopTimer() {
+        if(alertMediaPlayer.isPlaying) alertMediaPlayer.stop()
         countDownTimer?.cancel()
         countDownTimer = null
     }
