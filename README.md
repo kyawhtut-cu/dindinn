@@ -1,6 +1,6 @@
 ## DinDinn
 
-This repo is use for job interview code test. I'm using in MVVM pattern with Repository. And then, I have implemented Github Action for CI/CD. Currently, `expired_time`, `created_at`, `alerted_at` fields value are hardcode because the order json api is mock. That are replaced with current time. So, `created_at` value is current time, `expired_time` value is current time + 6 min and `alerted_at` value is current time + 5 min.
+This repo is use for job interview code test. I'm using in MVVM pattern with Repository. And then, I have implemented Github Action for CI/CD. Currently, `expired_time`, `created_at`, `alerted_at` fields value are hardcode because the order json api is mock. That are replaced with current time. So, `created_at` value is current time, `expired_time` value is current time + 2 min and `alerted_at` value is current time + 1 min.
 
 Github Action
 --
